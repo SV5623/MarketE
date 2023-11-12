@@ -1,11 +1,7 @@
 {
-    "dsn": "mysql:host=localhost;dbname=MarketTryPlace;charset=utf8",
+    "host": "localhost",
+    "dbname": "MarketTryPlace",
+    "charset": "utf8",
     "user": "s623",
-    "pass": "plop....",
-    "options": {
-      "errmode": 2,
-      "fetchmode": 2,
-      "emulateprepares": false
-    }
-  }
-  
+    "password": "plop...."
+}

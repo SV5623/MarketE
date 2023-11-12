@@ -2,8 +2,15 @@
 // Ensure that the session is started
 session_start();
 
+
 // Include the PdoConnect class
 require '../classes/PdoConnect.php';
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,6 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Generate a login token for form submission
 $login_token = bin2hex(random_bytes(32));
 $_SESSION['login_token'] = $login_token;
+
+try {
+    // SQL query execution
+} catch (PDOException $e) {
+    echo 'Error: ' . $e->getMessage();
+}
+
 ?>
 
 <!DOCTYPE html>
