@@ -7,16 +7,17 @@
 
 :root {
 	--main-bg-color-1: #000;
-	--main-bg-color-2: #fff;
-	--main-color-1: #650000;
-	--main-color-2: #fff;
+	--main-bg-color-2: #0b1c31; /* Темно-синій колір для тла */
+	--main-color-1: #fff; /* Білий колір для тексту та акцентів */
+	--main-color-2: #000; /* Чорний колір для контрасту */
 }
 
 body {
 	background: var(--main-bg-color-1) url("../img/background.jpg") repeat;
 	background-size: 100% auto;
 	background-position: top;
-	font-family: Ouroboros;
+	font-family: 'Ouroboros', sans-serif;
+	color: var(--main-color-2);
 }
 
 .vein {

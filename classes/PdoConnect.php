@@ -1,40 +1,37 @@
 <?php
-
 class PdoConnect {
+    private const HOST = 'localhost';
+    private const DB = 'MarketTryPlace';
+    private const USER = 's623';
+    private const PASS = 'plop....';
+    private const CHARSET = 'utf8';
 
-	private const HOST = 'localhost';
-	private const DB = 'MarketTryPlace';
-	private const USER = 's623';
-	private const PASS = 'plop....';
-	private const CHARSET = 'utf8';
+    protected static $_instance;
 
-	protected static $_instance;
+    protected $DSN;
+    protected $OPD;
+    public $PDO;
 
-	protected $DSN;
-	protected $OPD;
-	public $PDO;
+    private function __construct() {
+        $this->DSN = "mysql:host=" . self::HOST . ";dbname=" . self::DB . ";charset=" . self::CHARSET;
 
-	private function __construct() {
-		
-		$this->DSN = "mysql:host=" . self::HOST . ";dbname=" . self::DB . ";charset=" . self::CHARSET;
+        $this->OPD = array(
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        );
 
-		$this->OPD = array(
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-			PDO::ATTR_EMULATE_PREPARES => false,
-		);
+        $this->PDO = new PDO($this->DSN, self::USER, self::PASS, $this->OPD);
+    }
 
-		$this->PDO = new PDO($this->DSN, self::USER, self::PASS, $this->OPD);
-	}
+    public static function getInstance() {
+        if (self::$_instance === null) {
+            self::$_instance = new self;
+        }
+        return self::$_instance;
+    }
 
-	public static function getInstance() {
-
-		if (self::$_instance === null)
-			self::$_instance = new self;
-
-		return self::$_instance;
-	}
-
-	private function __clone() {}
-	private function __wakeup() {}
+    private function __clone() {}
+    public function __wakeup() {}
 }
+?>

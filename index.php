@@ -1,32 +1,40 @@
 <?php
+session_start();
 
-spl_autoload_register(function ($class) {
-    include 'classes/' . $class . '.php';
-});
+// Перевірка, чи користувач авторизований
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    $userIsAuthenticated = true;
+} else {
+    $userIsAuthenticated = false;
+}
+?>
 
-// Отримуємо поточну дату
-$currentDate = date('m.d', time());
-$currentDateArray = explode('.', $currentDate);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+</head>
+<body>
 
-$currentMounth = $currentDateArray[0];
-$currentDay = $currentDateArray[1];
-
-// Ваша попередня умова перевірки на таймер
-// if ($currentMounth == 12 && $currentDay >= 24) {
-//     $PDO = PdoConnect::getInstance();
-//     $result = $PDO->PDO->query("SELECT * FROM `goods`");
-//     $products = array();
-//     while ($productInfo = $result->fetch()) {
-//         $products[] = $productInfo;
-//     }
-//     include 'online_store.php';
-// } else {
-    // Якщо умова не виконується, завжди відображаємо онлайн магазин
-    $PDO = PdoConnect::getInstance();
-    $result = $PDO->PDO->query("SELECT * FROM `goods`");
-    $products = array();
-    while ($productInfo = $result->fetch()) {
-        $products[] = $productInfo;
+    <?php
+    // Виведення повідомлення про успішний вхід
+    if ($userIsAuthenticated && isset($_SESSION['message'])) {
+        echo '<div class="MessageShow">' . $_SESSION['message'] . '</div>';
+        // Очистіть повідомлення після виведення
+        unset($_SESSION['message']);
     }
-    include 'online_store.php';
-// }
+    ?>
+
+    <h1>Online Store</h1>
+
+    <?php if ($userIsAuthenticated): ?>
+        <p>Ви вже увійшли в систему.</p>
+        <p><a href="classes/logout.php">Вийти</a></p>
+    <?php else: ?>
+        <p><a href="classes/login.php">Увійти в систему</a></p>
+    <?php endif; ?>
+
+</body>
+</html>
