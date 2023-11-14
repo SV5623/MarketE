@@ -8,6 +8,6 @@ session_destroy();
 unset($_SESSION['loggedin']);
 
 // Redirect the user to the home page or another page as desired
-header("Location: /MarketTry/online_store.php");
+header("Location: /MarketTry/index.php");
 exit();
 ?>

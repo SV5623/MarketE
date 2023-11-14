@@ -7,9 +7,6 @@ session_start();
 require '../classes/PdoConnect.php';
 
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 
 // Check if the form is submitted
@@ -42,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
 
             // Redirect the user to the online store or another page
-            header('Location: ../online_store.php');
+            header('Location: ../index.php');
             exit;
         } else {
             // Display an error message if login fails
@@ -55,11 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $login_token = bin2hex(random_bytes(32));
 $_SESSION['login_token'] = $login_token;
 
-try {
-    // SQL query execution
-} catch (PDOException $e) {
-    echo 'Error: ' . $e->getMessage();
-}
+
 
 ?>
 
@@ -71,6 +64,7 @@ try {
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/MarketTry/static/css/login_style.css">
 </head>
+
 <body>
     <div class="login-container">
         <h2>Login</h2>
