@@ -45,9 +45,11 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
                             <span><a href="index.php">Home</a></span>
                             <span><a href="classes/logout.php">Log Out</a></span>
                             <span><a href="add_product.php">Add your product</a></span>
+                            <span><a href="classes/export.php">Take CsV</a></span>
                         <?php else: ?>
                             <!-- Меню для неавторизованого користувача -->
                             <span><a href="classes/login.php">Login</a></span>
+                            <span><a href="classes/export.php">Take CsV</a></span>
                         <?php endif; ?>
                     </div>
                 </div>
