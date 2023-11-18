@@ -141,3 +141,108 @@ body {
     outline: none;
     color: #007bff; /* Змініть колір на ваш смак */
 }
+
+/* Додайте цей блок стилів для темного режиму */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .login-container {
+    background-color: #1a1a1a; /* Темний фон контейнера */
+    color: #ffffff; /* Колір тексту */
+}
+
+
+
+.dark-mode .input-group label {
+    color: #ced4da; /* Колір тексту лейблів */
+}
+
+.dark-mode .input-group input {
+    background-color: #1a1a1a; /* Темний фон інпутів */
+    color: #ce0000; /* Колір тексту в інпутах */
+}
+
+.dark-mode .login-button {
+    background-color: #007bff; /* Колір кнопки у темному режимі */
+    color: #ffffff; /* Колір тексту на кнопці у темному режимі */
+}
+
+.dark-mode .login-button:hover {
+    background-color: #0056b3; /* Колір кнопки при наведенні у темному режимі */
+}
+
+.dark-mode .signup-link {
+    color: #ced4da; /* Колір тексту для посилання на реєстрацію у темному режимі */
+}
+
+.dark-mode .signup-link a {
+    color: #ffffff; /* Колір тексту для посилання на реєстрацію при наведенні у темному режимі */
+}
+
+.dark-mode .signup-link a:hover {
+    color: #a9c4e5; /* Колір тексту для посилання на реєстрацію при наведенні у темному режимі */
+}
+
+.dark-mode .show-password {
+    color: #fff; /* Колір тексту для кнопки "показати пароль" у темному режимі */
+}
+
+.dark-mode .password-input-container input {
+    background-color: #1a1a1a; /* Темний фон інпутів паролю у темному режимі */
+    color: #ce0000; /* Колір тексту в інпуті паролю у темному режимі */
+}
+
+.dark-mode .password-input-container .show-password {
+    color: #007bff; /* Колір тексту для кнопки "показати пароль" у темному режимі */
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #007bff; /* Колір слайдера у темному режимі */
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}

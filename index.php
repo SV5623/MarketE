@@ -42,7 +42,7 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
                     <div class="login-container">
                         <?php if ($userIsAuthenticated): ?>
                             <!-- Меню для авторизованого користувача -->
-                            <span><a href="index.php">Home</a></span>
+                            <span><a href="profile.php">Profile</a></span>
                             <span><a href="classes/logout.php">Log Out</a></span>
                             <span><a href="add_product.php">Add your product</a></span>
                             <span><a href="classes/export.php">Take CsV</a></span>

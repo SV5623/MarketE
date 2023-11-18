@@ -1,5 +1,5 @@
 <?php
-session_start(); // Ініціалізація сесії
+session_start();
 
 // Підключення до бази даних
 require 'classes/PdoConnect.php';
@@ -11,10 +11,8 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
 $username = '';
 
 if ($userIsAuthenticated) {
-    // Якщо користувач авторизований, отримати ім'я з бази даних
-    $userId = $_SESSION['user_id']; // Припускається, що user_id зберігається в сесії при авторизації
+    $userId = $_SESSION['user_id'];
 
-    // Запит до бази даних для отримання імені
     $sql = "SELECT username FROM users WHERE id = :userId";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
@@ -30,25 +28,27 @@ if ($userIsAuthenticated) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/MarketTry/static/css/profile_style.css">
+    <link rel="stylesheet" href="/MarketTry/static/css/profile.css">
 </head>
+
 <body>
+    <?php include 'includes/navbar.html'; ?>
 
-<div class="profile-container">
-    <?php if ($userIsAuthenticated): ?>
-        <h2>Hello, <?php echo htmlspecialchars($username); ?>!</h2>
-        <p>This is your profile page.</p>
-        <p><a href="logout.php">Logout</a></p>
-    <?php else: ?>
-        <p>You are not logged in. <a href="login.php">Log in</a> or <a href="register.php">register</a>.</p>
-    <?php endif; ?>
-</div>
-
-<!-- Вставте інші блоки HTML або код сторінки тут -->
-
+    <div class="profile-container">
+        <?php if ($userIsAuthenticated): ?>
+            <h2>Hello, <?php echo htmlspecialchars($username); ?>!</h2>
+            <p>This is your profile page.</p>
+            <p><a href="classes/logout.php" class="logout-link">Logout</a></p>
+        <?php else: ?>
+            <p class="profile-message">You are not logged in. <a href="classes/login.php" class="link-to-styles">Log in</a> or <a href="classes/signup.php" class="link-to-styles">register</a>.</p>
+        <?php endif; ?>
+    </div>
+    
 </body>
+
 </html>

@@ -51,9 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Generate a login token for form submission
 $login_token = bin2hex(random_bytes(32));
 $_SESSION['login_token'] = $login_token;
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -63,10 +60,18 @@ $_SESSION['login_token'] = $login_token;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/MarketTry/static/css/login_style.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="login-container">
+    
+    <div class="login-container" id="login-container">
+    <label class="theme-switch" for="theme-toggle">
+        <input type="checkbox" id="theme-toggle" onclick="toggleTheme()">
+        <div class="slider round"></div>
+    </label>
+
+
         <h2>Login</h2>
         <form action="/MarketTry/classes/login.php" method="post">
 
@@ -81,10 +86,7 @@ $_SESSION['login_token'] = $login_token;
                     <input type="password" id="password" name="password" required>
                     <button type="button" class="show-password" onclick="togglePassword('password')">👁</button>
                 </div>
-
             </div>
-
-
 
             <!-- Add the login token to the form -->
             <input type="hidden" name="login_token" value="<?= $login_token ?>">
@@ -101,11 +103,19 @@ $_SESSION['login_token'] = $login_token;
     </div>
 
     <script>
-        function togglePassword(inputId) {
-            var passwordInput = document.getElementById(inputId);
-            passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-        }
-    </script>
+    function togglePassword(inputId) {
+        var passwordInput = document.getElementById(inputId);
+        passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+    }
+
+    function toggleTheme() {
+        var body = document.body;
+        body.classList.toggle('dark-mode');
+
+        // Додайте код для зміни стилів в темному режимі, якщо потрібно
+    }
+</script>
+
 
 </body>
 </html>
