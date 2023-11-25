@@ -17,43 +17,23 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <title>Book_Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <link href="/MarketTry/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/MarketTry/static/css/slick.css" rel="stylesheet" type="text/css">
-    <script src="/MarketTry/static/js/jquery-3.4.1.min.js"></script>
-    <script src="/MarketTry/static/js/slick.js"></script>
+
     <script src="/MarketTry/static/js/script.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <link href="/MarketTry/static/css/style.css" rel="stylesheet" type="text/css">
+   <link href="/MarketTry/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-    <div class="vein"></div>
+    
     <div class="main container">
         <header>
-            <div class="mobile-menu-open-button js_mobile_menu_open_button"><i class="fas fa-bars"></i></div>
-            <nav class="js_wide_menu">
-                <i class="fas fa-times close-mobile-menu js_close_mobile_menu"></i>
-                <div class="wrapper-inside">
-                    <div class="visible-elements">
-                    <div class="login-container">
-                        <?php if ($userIsAuthenticated): ?>
-                            <!-- Меню для авторизованого користувача -->
-                            <span><a href="profile.php">Profile</a></span>
-                            <span><a href="classes/logout.php">Log Out</a></span>
-                            <span><a href="add_product.php">Add your product</a></span>
-                            <span><a href="classes/export.php">Take CsV</a></span>
-                        <?php else: ?>
-                            <!-- Меню для неавторизованого користувача -->
-                            <span><a href="classes/login.php">Login</a></span>
-                            <span><a href="classes/export.php">Take CsV</a></span>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </nav>
             <div class="slider-block">
                 <div class="nav-left"><i class="fas fa-chevron-left"></i></div>
                 <div class="slider">
@@ -80,36 +60,37 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
                             <div class="product-pic" style="background: url('<?= isset($product['image']) ? htmlspecialchars($product['image']) : '' ?>') no-repeat; background-size: auto 100%; background-position: center"></div>
                             <span class="product-name"><?= isset($product['name']) ? htmlspecialchars($product['name']) : '' ?></span>
                             <span class="product_price"><?= isset($product['price']) ? htmlspecialchars($product['price']) : '' ?> USD</span>
-                            
+
                             <!-- Додана властивість data-id для ідентифікації товару -->
                             <?php if ($userIsAuthenticated): ?>
-                                <button class="js_buy" data-id="<?= isset($product['id']) ? htmlspecialchars($product['id']) : '' ?>">Buy</button>
+                                <button class="product-button js_buy" data-id="<?= isset($product['id']) ? htmlspecialchars($product['id']) : '' ?>">Buy</button>
                             <?php else: ?>
-                                <p>Будь ласка, <a href="classes/login.php">авторизуйтесь</a>, щоб купити товар.</p>
+                                <p>Please <a href="classes/login.php">log in</a>, to buy it.</p>
                             <?php endif; ?>
+
                         </div>
                     </div>
-
                 <?php endforeach; ?>
             </div>
         </section>
         <footer>
             Have a nice day!
         </footer>
-   
-    <div class="admin-panel js_admin_panel">
-        <!-- Here, you can add the content for the admin panel, e.g., a form for uploading products -->
+
+        <script src="/MarketTry/static/js/jquery-3.4.1.min.js"></script>
+        <script src="/MarketTry/static/js/slick.js"></script>
+        <script src="/MarketTry/static/js/script.js"></script>
+        <script>
+            // Додайте скрипт для обробки натискання кнопок "Buy"
+            $(document).ready(function() {
+                $('.js_buy').click(function() {
+                    var productId = $(this).data('id');
+                    window.location.href = 'product_details.php?id=' + productId;
+                });
+            });
+        </script>
     </div>
 
-    <script>
-    // Додайте скрипт для обробки натискання кнопок "Buy"
-        $(document).ready(function() {
-            $('.js_buy').click(function() {
-                var productId = $(this).data('id');
-                window.location.href = 'product_details.php?id=' + productId;
-            });
-        });
-    </script>
-
 </body>
+
 </html>

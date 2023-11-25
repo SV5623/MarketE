@@ -1,0 +1,84 @@
+/* Navbar styles */
+.navbar {
+    transition: background-color 0.3s, color 0.3s;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Light mode styles */
+.navbar-light {
+    background-color: #ffffff !important; /* Light background color for the light mode */
+    color: #000000 !important; /* Text color for the light mode */
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+    color: #000000 !important; /* Text color for the light mode */
+}
+
+/* Dark mode styles */
+.navbar-dark {
+    background-color: #333333 !important; /* Dark background color for the dark mode */
+    color: #ffffff !important; /* Text color for the dark mode */
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff !important; /* Text color for the dark mode */
+}
+
+.theme-toggle {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #007bff !important; /* Button color */
+    color: #ffffff !important; /* Text color */
+}
+
+.form-switch {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+/* Add more styles as needed */
+
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+    color: #000000; /* Text color for the light mode */
+}
+
+/* Dark mode styles */
+.navbar-dark {
+    background-color: #333333; /* Dark background color for the dark mode */
+    color: #ffffff; /* Text color for the dark mode */
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff; /* Text color for the dark mode */
+}
+
+.theme-toggle {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #007bff; /* Button color */
+    color: #ffffff; /* Text color */
+}
+
+.form-switch {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+/* Add more styles as needed */

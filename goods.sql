@@ -1,21 +1,15 @@
--- Використання бази даних
-USE MarketTryPlace;
-
--- Додавання записів до таблиці goods з вказанням user_id
-INSERT INTO goods (`user_id`, `name`, `price`, `image`)
+INSERT INTO `goods` (`id`, `user_id` , `name`, `price`, `image`, `opis`, `kategoria`, `liczba_sztuk`, `kraj`, `kod_pocztowy`, `stan`) 
 VALUES
-(1, 'Chocolate Santa Claus', '1.50', 'static/img/product-2.png'),
-(1, 'New Year Tree', '99.00', 'static/img/product-3.jpg'),
-(1, 'Sweet Box', '6.00', 'static/img/product-4.jpg'),
-(1, 'Santa Claus Figurine', '20.00', 'static/img/product-5.jpg'),
-(1, 'New Year Ball', '30.00', 'static/img/product-6.jpg'),
-(1, 'Tree Ornament Ball', '3.00', 'static/img/product-7.jpg'),
-(1, 'Tinsel', '1.20', 'static/img/product-8.jpg'),
-(1, 'Garland "Bulbs"', '12.00', 'static/img/product-9.jpg'),
-(1, 'New Year Champagne', '2.40', 'static/img/product-10.jpg'),
-(1, 'Candy Box', '2.50', 'static/img/product-11.jpg'),
-(1, 'Surprise Gift', '9.00', 'static/img/product-12.jpg'),
-(1, 'Star for the Tree', '4.00', 'static/img/product-13.jpg'),
-(1, 'New Year Hat', '6.00', 'static/img/product-14.jpg'),
-(1, 'Bengal Lights', '1.20', 'static/img/product-15.jpg'),
-(1, 'Party Popper', '0.80', 'static/img/product-16.png');
+(4, 1, 'Drzewko świąteczne', '99', 'static/img/product-3.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(5,1, 'Słodka skrzyneczka', '60', 'static/img/product-4.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(6,1, 'Figurka Świętego Mikołaja', '200', 'static/img/product-5.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(7, 1,'Bal noworoczny', '30', 'static/img/product-6.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(8, 1,'Piłka choinkowa', '30', 'static/img/product-7.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(9, 1,'Miszura', '12', 'static/img/product-8.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(10, 1,'Girlanda', '12', 'static/img/product-9.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12','Polska', '66-400', 'Nowy'),
+(11,1,'Szampan noworoczny', '24', 'static/img/product-10.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(12, 1,'Pudełko cukierków', '25', 'static/img/product-11.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(13, 1,'Prezent', '90', 'static/img/product-12.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12','Polska', '66-400', 'Nowy'),
+(14, 1,'Noworoczna czapka', '60', 'static/img/product-14.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(15, 1,'Sparklery', '10', 'static/img/product-15.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy'),
+(16, 1,'Petarda', '80', 'static/img/product-16.png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.', 'supermarket', '12', 'Polska', '66-400', 'Nowy')

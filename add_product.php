@@ -1,47 +1,64 @@
 <?php
-session_start(); // Ініціалізація сесії
+session_start(); // Initialize the session
 
-// Перевірка чи користувач увійшов в систему
-if (!isset($_SESSION['user_id'])) {
-    // Якщо не увійшов, перенаправляємо його на сторінку входу
-    header('Location: classes/login.php');
+// Check if the user is logged in
+$userIsAuthenticated = isset($_SESSION['user_id']);
+
+// If not logged in, redirect to the login page
+if (!$userIsAuthenticated) {
+    header('Location: /MarketTry/classes/login.php');
     exit;
 }
 
-// Перевірка методу запиту
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Обробка додавання товару
 
-    // Перевірка наявності необхідних даних
+// Check the request method
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Handle adding a product
+
+    // Check for the presence of required data
     if (!isset($_POST['name'], $_POST['price']) || empty($_FILES['image'])) {
         echo 'Missing data';
         exit;
     }
 
-    // Отримання даних з POST-запиту
+    // Get data from the POST request
     $name = $_POST['name'];
     $price = $_POST['price'];
+    $opis = isset($_POST['opis']) ? $_POST['opis'] : ''; // Added 'opis' field
 
-    // Отримання id користувача з сесії
+    // Get the user id from the session
     $userId = $_SESSION['user_id'];
 
-    // Підключення до бази даних
+    // Connect to the database
     require 'classes/PdoConnect.php';
     $pdo = PdoConnect::getInstance()->PDO;
 
-    // Обробка завантаження файлу
-    $uploadDirectory = 'static/img/'; // Папка для завантажених файлів
+    // Process file upload
+    $uploadDirectory = 'static/img/';
     $uploadedFile = $uploadDirectory . basename($_FILES['image']['name']);
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)) {
-        // Файл успішно завантажено, тепер додаємо товар до бази даних
-        $sql = 'INSERT INTO goods (name, price, image, user_id) VALUES (?, ?, ?, ?)';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $price, $uploadedFile, $userId]);
+        try {
+            // Use prepared statements to prevent SQL injection
+            $sql = 'INSERT INTO goods (name, price, image, user_id, opis, kategoria, liczba_sztuk, kraj, kod_pocztowy, stan) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            $stmt = $pdo->prepare($sql);
 
-        // Перенаправлення на головну сторінку після додавання товару
-        header('Location: index.php');
-        exit;
+            // Default values for other fields
+            $kategoria = 'supermarket';
+            $liczba_sztuk = 12;
+            $kraj = 'Polska';
+            $kod_pocztowy = '66-400';
+            $stan = 'nowy';
+
+            $stmt->execute([$name, $price, $uploadedFile, $userId, $opis, $kategoria, $liczba_sztuk, $kraj, $kod_pocztowy, $stan]);
+
+            // Redirect to the main page after adding the product
+            header('Location: index.php');
+            exit;
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
     } else {
         echo 'File upload failed';
         exit;
@@ -55,39 +72,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
-    <link rel="stylesheet" type="text/css" href="/MarketTry/static/css/login_style.css">
+    <!-- Посилання на бібліотеку Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/MarketTry/static/css/add_style.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Add Product</h2>
-        
-        <!-- Форма додавання товару -->
-        <form action="/MarketTry/add_product.php" method="post" enctype="multipart/form-data">
-            <div class="input-group">
-                <label for="name">Product Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="input-group">
-                <label for="price">Product Price:</label>
-                <input type="text" id="price" name="price" required>
-            </div>
+    <?php include 'includes/navbar.html'; ?>
+<div class="body-container">
+    <div class="page">
+        <div class="login-container">
+            <h2>Add Product</h2>
             
-            <div class="input-group">
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image" required accept="image/*">
-            </div>
-            <!-- Додайте сюди інші поля, якщо потрібно -->
+            <!-- Add product form -->
+            <form action="/MarketTry/add_product.php" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="name">Product Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
 
-            <button class="login-button" type="submit">Add Product</button>
-        </form>
+                <div class="input-group">
+                    <label for="price">Product Price:</label>
+                    <input type="text" id="price" name="price" required pattern="\d+(\.\d{2})?" title="Enter a valid price (e.g., 10.99)">
+                </div>
 
-        <?php
-        // Виведення повідомлення про помилку, якщо таке є
-        if (isset($error_message)) {
-            echo '<p class="error-message">' . $error_message . '</p>';
-        }
-        ?>
+
+                <div class="input-group">
+                    <label for="opis">Product Description:</label>
+                    <textarea id="opis" name="opis"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" required accept="image/*">
+                </div>
+
+                <!-- Add other fields here if needed -->
+
+                <button class="login-button" type="submit">Add Product</button>
+            </form>
+        </div>
     </div>
+</div>
 </body>
 </html>

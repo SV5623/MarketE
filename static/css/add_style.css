@@ -38,6 +38,50 @@ body.dark-mode {
     color: #ffffff; /* Колір тексту для темного режиму .page */
 }
 
+
+.theme-toggle {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+
+/* Additional styles for the new input field */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left; /* Зберігаємо текстерію ліворуч у .input-group */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ced4da; /* Колір тексту для лейблів у світлому режимі */
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: none; /* Відмінити вертикальний ресайз */
+    overflow-y: auto; /* Додано автоматичний вертикальний скролл, якщо контент перевищує розмір textarea */
+    min-height: 80px; /* Мінімальна висота textarea */
+    transition: background-color 0.3s, color 0.3s; /* Плавний перехід кольорів */
+}
+
+.dark-mode .input-group label {
+    color: #555; /* Колір тексту для лейблів у темному режимі */
+}
+
+.dark-mode textarea {
+    background-color: #1a1a1a; /* Колір тла для текстерії в темному режимі */
+    color: #ce0000; /* Колір тексту для текстерії в темному режимі */
+}
+
+
+
 .input-group input.show-password {
     padding-right: 30px;
 }
@@ -51,8 +95,8 @@ body.dark-mode {
 }
 
 .login-container {
-    background-color: #343a40;
-    color: #ffffff;
+    background-color: rgb(235, 154, 255);
+    color: #000000;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -74,7 +118,7 @@ body.dark-mode {
 .input-group label {
     display: block;
     margin-bottom: 5px;
-    color: #ced4da;
+    color: #636262;
 }
 
 .input-group input {
@@ -145,7 +189,6 @@ body.dark-mode {
     color: #fff;
 }
 
-
 /* Додайте цей блок стилів */
 .password-input-container {
     position: relative;
@@ -171,14 +214,13 @@ body.dark-mode {
     color: #007bff; /* Змініть колір на ваш смак */
 }
 
+/* Додайте цей блок стилів для темного режиму */
 
 
 .dark-mode .login-container {
-    background-color: #1a1a1a; /* Темний фон контейнера */
+    background-color: #302f2f; /* Темний фон контейнера */
     color: #ffffff; /* Колір тексту */
 }
-
-
 
 .dark-mode .input-group label {
     color: #ced4da; /* Колір тексту лейблів */
@@ -190,7 +232,7 @@ body.dark-mode {
 }
 
 .dark-mode .login-button {
-    background-color: #007bff; /* Колір кнопки у темному режимі */
+    background-color: #921cc9; /* Колір кнопки у темному режимі */
     color: #ffffff; /* Колір тексту на кнопці у темному режимі */
 }
 
@@ -221,53 +263,4 @@ body.dark-mode {
 
 .dark-mode .password-input-container .show-password {
     color: #007bff; /* Колір тексту для кнопки "показати пароль" у темному режимі */
-}
-
-.theme-switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.theme-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #007bff; /* Колір слайдера у темному режимі */
-}
-
-input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
 }

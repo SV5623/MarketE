@@ -2,12 +2,8 @@
 // Ensure that the session is started
 session_start();
 
-
 // Include the PdoConnect class
 require '../classes/PdoConnect.php';
-
-
-
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -60,62 +56,46 @@ $_SESSION['login_token'] = $login_token;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/MarketTry/static/css/login_style.css">
+    <link rel="stylesheet" type="text/css" href="/MarketTry/includes/navbar.css">
     <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    
-    <div class="login-container" id="login-container">
-    <label class="theme-switch" for="theme-toggle">
-        <input type="checkbox" id="theme-toggle" onclick="toggleTheme()">
-        <div class="slider round"></div>
-    </label>
+    <?php include '../includes/navbar.html'; ?>
 
+    <div class="body-container">
+        <div class="page">
+            <div class="login-container" id="login-container">
+                <h2>Login</h2>
+                <form action="/MarketTry/classes/login.php" method="post">
+                    <div class="input-group">
+                        <label for="username">Your username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
 
-        <h2>Login</h2>
-        <form action="/MarketTry/classes/login.php" method="post">
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <div class="password-input-container">
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" class="show-password" onclick="togglePassword('password')">👁</button>
+                        </div>
+                    </div>
 
-            <div class="input-group">
-                <label for="username">Your username:</label>
-                <input type="text" id="username" name="username" required>
+                    <!-- Add the login token to the form -->
+                    <input type="hidden" name="login_token" value="<?= $login_token ?>">
+
+                    <button class="login-button" type="submit">Login</button>
+                </form>
+                <p class="signup-link">No account? <a href="singup.php">Create new one</a></p>
+                <?php
+                // Display error message if any
+                if (isset($error_message)) {
+                    echo '<p class="error-message">' . $error_message . '</p>';
+                }
+                ?>
             </div>
-
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <div class="password-input-container">
-                    <input type="password" id="password" name="password" required>
-                    <button type="button" class="show-password" onclick="togglePassword('password')">👁</button>
-                </div>
-            </div>
-
-            <!-- Add the login token to the form -->
-            <input type="hidden" name="login_token" value="<?= $login_token ?>">
-
-            <button class="login-button" type="submit">Login</button>
-        </form>
-        <p class="signup-link">No account? <a href="singup.php">Create new one</a></p>
-        <?php
-        // Display error message if any
-        if (isset($error_message)) {
-            echo '<p class="error-message">' . $error_message . '</p>';
-        }
-        ?>
+        </div>
     </div>
-
-    <script>
-    function togglePassword(inputId) {
-        var passwordInput = document.getElementById(inputId);
-        passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
-    }
-
-    function toggleTheme() {
-        var body = document.body;
-        body.classList.toggle('dark-mode');
-
-        // Додайте код для зміни стилів в темному режимі, якщо потрібно
-    }
-</script>
-
-
 </body>
 </html>
+z

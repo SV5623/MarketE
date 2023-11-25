@@ -133,14 +133,13 @@ function exportToCSV() {
         'Temperatura aplikacji [°C]', 	
         'Sposób zamknięcia',
         'Frakcja [mm]',
-    );
             // Додайте інші заголовки за необхідності
-    
+        );
 
         fputcsv($csvFile, $csvHeaders);
 
         // SQL query to select data from your table
-        $sql = "SELECT id, name, price, image, description FROM goods";
+        $sql = "SELECT id, name, price, image, opis, kategoria, liczba_sztuk, kraj, kod_pocztowy, stan FROM goods";
         $stmt = $conn->PDO->prepare($sql);
         $stmt->execute();
 
@@ -164,7 +163,22 @@ function exportToCSV() {
                         $csvData[] = $row['image'];
                         break;
                     case 'Opis oferty':
-                        $csvData[] = $row['description'];
+                        $csvData[] = $row['opis'];
+                        break;
+                    case 'Kategoria':
+                        $csvData[] = $row['kategoria'];
+                        break;
+                    case 'Liczba sztuk':
+                        $csvData[] = $row['liczba_sztuk'];
+                        break;
+                    case 'Kraj':
+                        $csvData[] = $row['kraj'];
+                        break;
+                    case 'Kod pocztowy':
+                        $csvData[] = $row['kod_pocztowy'];
+                        break;
+                    case 'Stan':
+                        $csvData[] = $row['stan'];
                         break;
                     default:
                         $csvData[] = ''; // Leave empty if the column doesn't exist in the database

@@ -50,9 +50,9 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
         <div class="product-details">
             <img src="<?= isset($product['image']) ? htmlspecialchars($product['image']) : '' ?>" alt="Product Image" class="product-image">
 
-            <?php if (isset($product['description']) && !empty($product['description'])): ?>
+            <?php if (isset($product['opis']) && !empty($product['opis'])): ?>
                 <div class="description">
-                    <p><?= htmlspecialchars($product['description']) ?></p>
+                    <p><?= htmlspecialchars($product['opis']) ?></p>
                 </div>
             <?php else: ?>
                 <div class="description">
@@ -67,8 +67,8 @@ $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ===
                     <?php if ($_SESSION['user_id'] === $product['user_id']): ?>
                         <div class="edit-delete-buttons">
                             <a href="edit_product.php?id=<?= $product['id'] ?>" class="edit-button">Edit</a>
-                            <a href="delete_product.php?id=<?= $product['id'] ?>" class="delete-button">Delete</a>
-                        </div>
+                            <a href="classes/delete_item.php?id=<?= $product['id'] ?>" class="delete-button">Delete</a>
+                         </div>
                     <?php else: ?>
                         <a href="#" class="buy-button">Buy</a>
                     <?php endif; ?>
