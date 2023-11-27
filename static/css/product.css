@@ -1,0 +1,102 @@
+/* product.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Нічний режим */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ff0000;
+}
+
+.container.dark-mode {
+    background-color: #1a1a1a;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+h2.dark-mode {
+    color: #ff0000;
+}
+
+table.dark-mode {
+    border-collapse: collapse;
+}
+
+table.dark-mode, th.dark-mode, td.dark-mode {
+    border: 1px solid #ff0000;
+}
+
+th.dark-mode, td.dark-mode {
+    padding: 10px;
+    text-align: left;
+}
+
+thead.dark-mode {
+    background-color: #1a1a1a;
+    color: #ff0000;
+}
+
+tbody.dark-mode {
+    background-color: #333;
+    color: #ff0000;
+}
+
+tr.dark-mode:hover {
+    background-color: #555;
+}
+
+/* Денний режим */
+body.light-mode {
+    background-color: #fff;
+    color: #333;
+}
+
+.container.light-mode {
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2.light-mode {
+    color: #333;
+}
+
+table.light-mode {
+    border-collapse: collapse;
+}
+
+table.light-mode, th.light-mode, td.light-mode {
+    border: 1px solid #333;
+}
+
+th.light-mode, td.light-mode {
+    padding: 10px;
+    text-align: left;
+}
+
+thead.light-mode {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+tbody.light-mode {
+    background-color: #eee;
+    color: #333;
+}
+
+tr.light-mode:hover {
+    background-color: #ddd;
+}
+
+/* Заголовки між таблицями */
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+}
+body.dark-mode th
+{
+    background-color: rgb(80, 80, 0);
+}

@@ -1,0 +1,73 @@
+.profile-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px; /* Додайте внутрішній відступ для зниження висоти контейнера */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #007bff;
+}
+
+.profile-message {
+    margin-top: 20px;
+    color: #555;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+.logout-link {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    background-color: #bd2130;
+}
+
+/* Нічна тема */
+
+body.dark-mode
+{
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .profile-message
+{
+    color:#ff0000;
+}
+
+body.dark-mode .profile-container {
+    background-color: #424242;
+    color:#ff0000;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.h2.dark-mode {
+    color: #61dafb;
+}
+
+body.profile-message.dark-mode {
+    color: #ff0000;
+}
+
+body.logout-link.dark-mode {
+    background-color: #ff0000;
+}
+
+body.logout-link.dark-mode:hover {
+    background-color: #bd2130;
+}

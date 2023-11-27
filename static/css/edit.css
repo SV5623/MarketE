@@ -1,0 +1,81 @@
+/* edit.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Нічний режим */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .container {
+    background-color: #444;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode label {
+    color: #fff;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark-mode button {
+    background-color: #1e7a1e;
+}
+
+body.dark-mode button:hover {
+    background-color: #176617;
+}

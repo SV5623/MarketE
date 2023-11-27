@@ -1,0 +1,219 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+/* Toggle Switch */
+.switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+
+body.dark-mode .navbar a:hover {
+    color: #ddd;
+}
+
+body.dark-mode .product-pic {
+    background-color: #555;
+}
+
+body.dark-mode .product:hover {
+    background-color: #333;
+}
+
+
+
+/* Header */
+.main-header {
+    position: relative;
+    overflow: hidden;
+}
+/* Slider Styles */
+.slider-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-arrow {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    width: 40px; /* Змініть розмір стрілок за необхідністю */
+    height: 40px; /* Змініть розмір стрілок за необхідністю */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-left {
+    left: 10px;
+}
+
+.nav-right {
+    right: 10px;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 300px; /* Adjust the height as needed */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.text-box {
+    color: #fff;
+    font-size: 18px;
+    max-width: 70%; /* Змініть ширину текстового блоку за необхідністю */
+}
+
+/* Dark Mode Styles for Slider */
+body.dark-mode .slide {
+    background-color: #555; /* Change the background color for dark mode */
+}
+
+body.dark-mode .text-box {
+    color: #fff; /* Change the text color for dark mode */
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 767px) {
+    .slide {
+        height: 200px; /* Adjust the height for smaller screens */
+    }
+}
+
+
+
+/* Catalog */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row.dark-mode {
+    background-color: #222; /* Змініть кольори на ваш смак */
+    color: #fff; /* Змініть кольори на ваш смак */
+    margin: 10px 0; /* Змініть відстань від країв, якщо потрібно */
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    overflow: hidden;
+    width: 100%;
+    min-width: 150px;
+    max-width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s ease, height 0.3s ease; /* Додано плавність для змін розміру */
+    position: relative;
+}
+@media (max-width: 768px) {
+    .product {
+        width: 45%; /* Змінено ширину на 100% для малих екранів */
+        max-width: none; /* Знято обмеження максимальної ширини */
+    }
+
+    .col-xs-6,
+    .col-sm-6,
+    .col-md-3,
+    .col-lg-3,
+    .product-parent {
+        /* Додайте стилі для блоку на мобільних екранах тут */
+        width: 45%; /* Займайте всю ширину екрану */
+        margin-bottom: 10px; /* Додайте відступ між блоками */
+    }
+}
+
+/* Додано стилі для адаптивності висоти на великих екранах */
+@media (min-width: 1200px) {
+    .product {
+        height: 300px; /* Змінено висоту на великих екранах (вкажіть вашу висоту) */
+    }
+}
+
+
+.product-pic {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.product-pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-name,
+.product_price {
+    margin-top: 5px;
+    font-size: 1.2em;
+}
+
+.js_buy {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    background-color: grey;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+body.dark-mode .js_buy 
+{
+    background-color: rgb(76, 76, 255);
+} 
+
+.product:hover .js_buy {
+    display: block;
+}
+
+/* Додано стилі для нічного режиму */
+body.dark-mode .product {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .product-pic {
+    background-color: #555;
+}
+
