@@ -1,0 +1,104 @@
+/* Add your purchase page styles */
+.page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff; /* Колір тла для світлого режиму .page */
+    color: #000000; /* Колір тексту для світлого режиму .page */
+    transition: background-color 0.3s, color 0.3s; /* Плавний перехід кольорів */
+}
+.body-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px; /* Додайте відступи за необхідності */
+
+    /* Перевизначення стилів Bootstrap */
+    background-color: transparent !important; /* Або вкажіть власний колір фону */
+    border: none !important; /* Відключення рамки */
+}
+
+.dark-mode .page {
+    background-color: #1a1a1a; /* Колір тла для темного режиму .page */
+    color: #ffffff; /* Колір тексту для темного режиму .page */
+}
+.purchase-container {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* Text color for dark mode */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    position: relative;
+    margin-top: 50px;
+}
+
+.purchase-container h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ced4da; /* Label text color */
+}
+
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: transparent; /* Make the select background transparent */
+    color: #ffffff; /* Text color for select in dark mode */
+}
+
+.purchase-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Button color in light mode */
+    color: #ffffff; /* Text color for the button in light mode */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.purchase-button:hover {
+    background-color: #0056b3; /* Button color on hover in light mode */
+}
+
+.dark-mode .purchase-container {
+    background-color: #1a1a1a; /* Dark background color in dark mode */
+    color: #ffffff; /* Text color for dark mode */
+}
+
+.dark-mode .input-group label {
+    color: #ced4da; /* Label text color in dark mode */
+}
+
+.dark-mode .input-group select {
+    background-color: #1a1a1a; /* Dark background color for select in dark mode */
+    color: #ffffff; /* Text color for select in dark mode */
+}
+
+.dark-mode .purchase-button {
+    background-color: #007bff; /* Button color in dark mode */
+    color: #ffffff; /* Text color for the button in dark mode */
+}
+
+.dark-mode .purchase-button:hover {
+    background-color: #0056b3; /* Button color on hover in dark mode */
+}
+
+/* Additional styles for error message */
+.error-message {
+    color: #ff0000; /* Red color for error messages */
+    margin-top: 10px;
+}

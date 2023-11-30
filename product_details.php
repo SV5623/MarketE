@@ -67,7 +67,7 @@ $userIsProductOwner = $userIsAuthenticated && $_SESSION['user_id'] === $product[
                             <a href="classes/delete_item.php?id=<?= $product['id'] ?>" class="delete-button">Delete</a>
                         </div>
                     <?php else: ?>
-                        <a href="#" class="buy-button">Buy</a>
+                        <a href="classes/purchase.php" class="buy-button">Buy</a>
                     <?php endif; ?>
                 <?php else: ?>
                     <p>Please <a href="classes/login.php">log in</a> to buy this product.</p>

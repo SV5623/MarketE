@@ -99,17 +99,17 @@ body.dark-mode {
     background-color: #0056b3;
 }
 
-.signup-link {
+.singup-link {
     margin-top: 15px;
     color: #ced4da;
 }
 
-.signup-link a {
+.singup-link a {
     color: #ffffff;
     text-decoration: underline;
 }
 
-.signup-link a:hover {
+.singup-link a:hover {
     color: #a9c4e5;
 }
 
@@ -198,15 +198,15 @@ body.dark-mode {
     background-color: #0056b3; /* Колір кнопки при наведенні у темному режимі */
 }
 
-.dark-mode .signup-link {
+.dark-mode .singup-link {
     color: #ced4da; /* Колір тексту для посилання на реєстрацію у темному режимі */
 }
 
-.dark-mode .signup-link a {
+.dark-mode .singup-link a {
     color: #ffffff; /* Колір тексту для посилання на реєстрацію при наведенні у темному режимі */
 }
 
-.dark-mode .signup-link a:hover {
+.dark-mode .singup-link a:hover {
     color: #a9c4e5; /* Колір тексту для посилання на реєстрацію при наведенні у темному режимі */
 }
 

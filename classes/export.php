@@ -181,6 +181,9 @@ function exportToCSV() {
                     case 'Stan':
                         $csvData[] = $row['stan'];
                         break;
+                    case 'Kategoria główna':
+                        $csvData[] = 'Item';
+                        break;
                     default:
                         $csvData[] = ''; // Leave empty if the column doesn't exist in the database
                 }
