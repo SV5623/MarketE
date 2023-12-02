@@ -101,8 +101,8 @@ function sendPurchaseConfirmationEmail($user_email, $goods_name, $liczba_sztuk) 
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'maestro5623@gmail.com';
-        $mail->Password   = 'plop5623';
+        $mail->Username   = '';
+        $mail->Password   = '';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465;
 
