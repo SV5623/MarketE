@@ -1,70 +1,83 @@
 <?php
-session_start(); // Initialize the session
+session_start(); // Ініціалізація сесії
 
-// Check if the user is logged in
+// Перевірка, чи користувач увійшов в систему
 $userIsAuthenticated = isset($_SESSION['user_id']);
 
-// If not logged in, redirect to the login page
+// Якщо не увійшов в систему, перенаправте на сторінку входу
 if (!$userIsAuthenticated) {
     header('Location: /MarketTry/classes/login.php');
     exit;
 }
 
-
-// Check the request method
+// Перевірка методу запиту
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Handle adding a product
+    // Обробка додавання товару
 
-    // Check for the presence of required data
-    if (!isset($_POST['name'], $_POST['price']) || empty($_FILES['image'])) {
+    // Перевірка наявності обов'язкових даних
+    if (!isset($_POST['name'], $_POST['price'], $_FILES['image'])) {
         echo 'Missing data';
         exit;
     }
 
-    // Get data from the POST request
+    // Отримання даних з POST-запиту
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $opis = isset($_POST['opis']) ? $_POST['opis'] : ''; // Added 'opis' field
+    $opis = isset($_POST['opis']) ? $_POST['opis'] : ''; // Додано поле 'opis'
+    $liczba_sztuk = isset($_POST['liczba_sztuk']) ? intval($_POST['liczba_sztuk']) : 1; // Значення за замовчуванням - 1
 
-    // Get the user id from the session
+    // Отримання ідентифікатора користувача з сесії
     $userId = $_SESSION['user_id'];
 
-    // Connect to the database
+    // Підключення до бази даних
     require 'classes/PdoConnect.php';
     $pdo = PdoConnect::getInstance()->PDO;
 
-    // Process file upload
-    $uploadDirectory = 'static/img/';
-    $uploadedFile = $uploadDirectory . basename($_FILES['image']['name']);
+    // Перевірка завантаження файлу
+    if ($_FILES['image']['error'] === 0) {
+        // Валідуємо тип файлу, якщо потрібно
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+        $fileType = finfo_file($fileInfo, $_FILES['image']['tmp_name']);
+        finfo_close($fileInfo);
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)) {
-        try {
-            // Use prepared statements to prevent SQL injection
-            $sql = 'INSERT INTO goods (name, price, image, user_id, opis, kategoria, liczba_sztuk, kraj, kod_pocztowy, stan) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-            $stmt = $pdo->prepare($sql);
-
-            // Default values for other fields
-            $kategoria = 'supermarket';
-            $liczba_sztuk = 12;
-            $kraj = 'Polska';
-            $kod_pocztowy = '66-400';
-            $stan = 'nowy';
-
-            $stmt->execute([$name, $price, $uploadedFile, $userId, $opis, $kategoria, $liczba_sztuk, $kraj, $kod_pocztowy, $stan]);
-
-            // Redirect to the main page after adding the product
-            header('Location: index.php');
+        if (!in_array($fileType, $allowedTypes)) {
+            echo 'Invalid file type. Allowed types: jpg, png, gif';
             exit;
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+        }
+
+        // Розміщення файлу у відповідну папку
+        $uploadDirectory = 'static/img/';
+        $uploadedFile = $uploadDirectory . basename($_FILES['image']['name']);
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadedFile)) {
+            try {
+                // Використання підготовлених запитів для запобігання SQL-ін'єкції
+                $sql = 'INSERT INTO goods (name, price, image, user_id, opis, liczba_sztuk) 
+                        VALUES (?, ?, ?, ?, ?, ?)';
+                $stmt = $pdo->prepare($sql);
+
+                // Значення за замовчуванням для інших полів
+                $opis = $opis ?: '';
+                $stmt->execute([$name, $price, $uploadedFile, $userId, $opis, $liczba_sztuk]);
+
+                // Перенаправлення на головну сторінку після додавання товару
+                header('Location: index.php');
+                exit;
+            } catch (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+            }
+        } else {
+            echo 'File upload failed';
+            exit;
         }
     } else {
-        echo 'File upload failed';
+        echo 'Error uploading file';
         exit;
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,40 +89,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <?php include 'includes/navbar.html'; ?>
-<div class="body-container">
-    <div class="page">
-        <div class="login-container">
-            <h2>Add Product</h2>
-            
-            <!-- Add product form -->
-            <form action="/MarketTry/add_product.php" method="post" enctype="multipart/form-data">
-                <div class="input-group">
-                    <label for="name">Product Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
+    <div class="body-container">
+        <div class="page">
+            <div class="login-container">
+                <h2>Add Product</h2>
+                
+                <!-- Форма додавання товару -->
+                <form action="/MarketTry/add_product.php" method="post" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <label for="name">Product Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
 
-                <div class="input-group">
-                    <label for="price">Product Price:</label>
-                    <input type="text" id="price" name="price" required pattern="\d+(\.\d{2})?" title="Enter a valid price (e.g., 10.99)">
-                </div>
+                    <div class="input-group">
+                        <label for="price">Product Price:</label>
+                        <input type="text" id="price" name="price" required pattern="\d+(\.\d{2})?" title="Enter a valid price (e.g., 10.99)">
+                    </div>
 
+                    <div class="input-group">
+                        <label for="liczba_sztuk">liczba_sztuk:</label>
+                        <input type="number" id="liczba_sztuk" name="liczba_sztuk" value="1" min="1" required>
+                    </div>
 
-                <div class="input-group">
-                    <label for="opis">Product Description:</label>
-                    <textarea id="opis" name="opis"></textarea>
-                </div>
+                    <div class="input-group">
+                        <label for="opis">Product Description:</label>
+                        <textarea id="opis" name="opis"></textarea>
+                    </div>
 
-                <div class="input-group">
-                    <label for="image">Image:</label>
-                    <input type="file" id="image" name="image" required accept="image/*">
-                </div>
+                    <div class="input-group">
+                        <label for="image">Image:</label>
+                        <input type="file" id="image" name="image" required accept="image/*">
+                    </div>
 
-                <!-- Add other fields here if needed -->
+                    <!-- Додавайте інші поля за необхідності -->
 
-                <button class="login-button" type="submit">Add Product</button>
-            </form>
+                    <button class="login-button" type="submit">Add Product</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

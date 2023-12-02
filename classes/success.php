@@ -1,29 +1,31 @@
 <?php
 session_start();
-require 'PdoConnect';
-
-// Check if the user is logged in or if the purchase was successful
+require 'PdoConnect.php'; // Правильно підключіть файл PdoConnect
+echo "Debug Info:<br>";
+echo "loggedin: " . $_SESSION['loggedin'] . "<br>";
+echo "purchase_success: " . $_SESSION['purchase_success'] . "<br>";
+// Додайте інші вивідні дані за потреби
+// Перевірка, чи користувач увійшов в систему, чи чи покупка була успішною
 if (!isset($_SESSION['loggedin']) || !isset($_SESSION['purchase_success'])) {
-    // If not logged in or purchase not successful, redirect to login page
+    // Якщо не увійшов в систему або покупка не була успішною, перенаправте на сторінку входу
     header('Location: login.php');
     exit;
 }
 
-// Retrieve additional information about the purchase from the database
-// You might have a purchase history table or similar to fetch details
+// Отримання додаткової інформації про покупку з бази даних
+// Можливо, у вас є таблиця історії покупок або подібна для отримання деталей
 
-// Example: Fetching the purchased item details
+// Приклад: Отримання деталей придбаного товару
 $purchaseItemId = $_SESSION['purchase_item_id'];
-$purchaseItemName = ''; // Fetch item name from the database based on $purchaseItemId
+$purchaseItemName = ''; // Отримайте назву товару з бази даних на основі $purchaseItemId
 
-// Example: Fetching the seller's email
-$sellerEmail = ''; // Fetch seller's email from the database based on $purchaseItemId
+// Приклад: Отримання електронної адреси продавця
+$sellerEmail = ''; // Отримайте електронну адресу продавця з бази даних на основі $purchaseItemId
 
-// Clear the purchase success flag to prevent showing this page on a refresh
+// Очистіть прапорець успіху покупки, щоб уникнути відображення цієї сторінки при оновленні
 unset($_SESSION['purchase_success']);
 
-// Include any additional logic you need for displaying purchase details
-
+// Включіть будь-яку додаткову логіку, яку ви потребуєте для відображення деталей покупки
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,7 @@ unset($_SESSION['purchase_success']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase Success</title>
-    <!-- Include your CSS stylesheets if needed -->
+    <!-- Включіть ваші таблиці стилів CSS, якщо потрібно -->
 </head>
 <body class="dark-mode">
     <?php include 'navbar.html'; ?>
@@ -44,12 +46,12 @@ unset($_SESSION['purchase_success']);
                 <p>Thank you for your purchase! Here are the details:</p>
                 <p><strong>Item Name:</strong> <?php echo $purchaseItemName; ?></p>
                 <p><strong>Seller's Email:</strong> <?php echo $sellerEmail; ?></p>
-                <!-- Add more details as needed -->
+                <!-- Додайте більше деталей за потреби -->
                 <p><a href="index.php">Go to Home</a></p>
             </div>
         </div>
     </div>
 
-    <!-- Include your JavaScript files if needed -->
+    <!-- Включіть ваші файли JavaScript, якщо потрібно -->
 </body>
 </html>

@@ -1,4 +1,3 @@
-<!-- product_detail.php -->
 <?php
 session_start();
 
@@ -60,6 +59,10 @@ $userIsProductOwner = $userIsAuthenticated && $_SESSION['user_id'] === $product[
             <div class="price-button-container">
                 <p class="price">Price: <?= isset($product['price']) ? htmlspecialchars($product['price']) . ' USD' : '' ?></p>
 
+                <?php if (isset($product['liczba_sztuk'])): ?>
+                    <p class="available-quantity">Available Quantity: <?= htmlspecialchars($product['liczba_sztuk']) ?></p>
+                <?php endif; ?>
+
                 <?php if ($userIsAuthenticated): ?>
                     <?php if ($userIsProductOwner): ?>
                         <div class="edit-delete-buttons">
@@ -67,7 +70,7 @@ $userIsProductOwner = $userIsAuthenticated && $_SESSION['user_id'] === $product[
                             <a href="classes/delete_item.php?id=<?= $product['id'] ?>" class="delete-button">Delete</a>
                         </div>
                     <?php else: ?>
-                        <a href="classes/purchase.php" class="buy-button">Buy</a>
+                        <a href="classes/purchase.php?id=<?= $product['id'] ?>" class="buy-button">Buy</a>
                     <?php endif; ?>
                 <?php else: ?>
                     <p>Please <a href="classes/login.php">log in</a> to buy this product.</p>

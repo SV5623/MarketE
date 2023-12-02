@@ -4,6 +4,7 @@ session_start();
 require 'classes/PdoConnect.php';
 $pdo = PdoConnect::getInstance()->PDO;
 
+
 // Отримання всіх товарів для каталогу
 $sql = "SELECT * FROM goods";
 $stmt = $pdo->query($sql);
@@ -15,6 +16,7 @@ $stmtLatest = $pdo->query($sqlLatest);
 $latestProducts = $stmtLatest->fetchAll(PDO::FETCH_ASSOC);
 
 $userIsAuthenticated = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
+
 ?>
 
 <!DOCTYPE html>

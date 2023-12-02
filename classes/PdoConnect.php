@@ -25,15 +25,14 @@ class PdoConnect {
         }
     }
 
+    
+
     public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new self;
         }
         return self::$_instance;
     }
-
-    private function __clone() {}
-    public function __wakeup() {}
 
     private function readConfig(): array {
         // Read server configuration from JSON file
